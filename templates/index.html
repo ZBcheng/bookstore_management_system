@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>书店库存管理系统</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="/static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="/static/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="/static/css/login.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+  <nav class="white" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" class="brand-logo">图书管理</a>
+      <ul class="right hide-on-med-and-down">
+
+        {% if request.user.is_authenticated %}
+            <script src="/static/js/showsidenav.js"></script>
+{#            <a class="waves-effect waves-light btn modal-trigger col s4" href="#modal1" onclick="login()" style="margin-left: 50px">登录</a>#}
+            <li><a onclick="show_sidebar()" href="#slide-out">个人信息</a></li>
+{#            <a href="#" data-target="slide-out" class="sidenav-trigger btn" onclick="show_sidebar()">个人信息</a>#}
+{#            <a class="sidenav-trigger btn" onclick="show_sidebar()" href="#slide-out">个人信息</a>#}
+
+        <li><a href="/logout/">退出登录</a></li>
+        </ul>
+
+        {% csrf_token %}
+        <ul id="slide-out" class="sidenav">
+            <li><div class="user-view">
+                <div class="background">
+                <img src="/static/pic/background1.jpg">
+                </div>
+                    <a href="#user"><img class="circle" src="/static/pic/user.JPG"></a>
+                    <a href="#name"><span class="white-text name" style="padding-top: 7px;padding-bottom: 20px">{{ request.user.username }}</span></a>
+                </div></li>
+            <li><a class="subheader" href="#!"></i>基本信息</a></li>
+            <li><div class="divider"></div></li>
+            <li><a class="waves-effect" href="#!"><i class="material-icons">face</i>{{ request.user.username }}</a></li>
+            <li><a class="waves-effect" href="#!"><i class="material-icons">phone</i>{{ request.user.mobile }}</a></li>
+            <li><a class="waves-effect" href="#!"><i class="material-icons">cake</i>{{ request.user.birthday }}</a></li>
+            <li><a class="waves-effect" href="#!"><i class="material-icons">email</i>{{ request.user.email }}</a></li>
+            <li><div class="divider"></div></li>
+            <li><a class="subheader">Subheader</a></li>
+            <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+
+            <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        </ul>
+
+            {% else %}
+            <li><a href="/login/">登录</a></li>
+            <li><a href="/register/">注册</a></li>
+            <li><a href="#">书店管理</a></li>
+        {% endif %}
+
+      </ul>
+    </div>
+  </nav>
+
+  <div id="index-banner" class="parallax-container" style="height: 500px;">
+    <div class="section no-pad-bot">
+      <div class="container" style="margin-top: 100px">
+        <br><br>
+        {% csrf_token %}
+        <h1 class="header center teal-text text-lighten-2">{{ 曲江书城.store_name }}</h1>
+        <div class="row center">
+          <h5 class="header col s12 light">{{ 曲江书城.address }}</h5>
+        </div>
+        <div class="row center">
+          <a href="/qujiang_bookstore/" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">进入书店</a>
+        </div>
+        <br><br>
+
+      </div>
+    </div>
+    <div class="parallax"><img src="/static/pic/qujiangshucheng.jpg" alt="Unsplashed background img 1"></div>
+  </div>
+
+
+  <div class="container">
+    <div class="section">
+      <div class="row">
+        <div class="col s12 center">
+          <h3><i class="mdi-content-send brown-text"></i></h3>
+          <h4>曲江书城</h4>
+          <p class="left-align light" style="font-size: 18px">{{ 曲江书城.introduction }}</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="parallax-container valign-wrapper" style="height: 500px;">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <div class="row center">
+            <h1 class="header center teal-text text-lighten-2" href="#">{{ 言几又.store_name }}</h1>
+            <div class="row center">
+                <h5 class="header col s12 light">{{ 言几又.address }}</h5>
+            </div>
+
+            <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">进入书店</a>
+        </div>
+      </div>
+    </div>
+    <div class="parallax"><img src="/static/pic/yanjiyou.jpg" alt="Unsplashed background img 2"></div>
+  </div>
+
+  <div class="container">
+    <div class="section">
+
+      <div class="row">
+        <div class="col s12 center">
+          <h3><i class="mdi-content-send brown-text"></i></h3>
+            <h4>言几又 迈科中心</h4>
+            <p class="left-align light" style="font-size: 18px">{{ 言几又.introduction }}</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="parallax-container valign-wrapper" style="height: 500px;">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <div class="row center">
+            <h1 class="header center teal-text text-lighten-2" href="#">{{ 中信书店.store_name }}</h1>
+            <div class="row center">
+                <h5 class="header col s12 light">{{ 中信书店.address }}</h5>
+            </div>
+
+            <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">进入书店</a>
+        </div>
+      </div>
+    </div>
+    <div class="parallax"><img src="/static/pic/zhongxinshudian.jpg" alt="Unsplashed background img 3"></div>
+  </div>
+  <div class="container">
+    <div class="section">
+
+      <div class="row">
+        <div class="col s12 center">
+          <h3><i class="mdi-content-send brown-text"></i></h3>
+          <h4>中信书店</h4>
+            <p class="left-align light" style="font-size: 18px">{{ 中信书店.introduction }}</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="parallax-container valign-wrapper" style="height: 500px;">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <div class="row center">
+            <h1 class="header center teal-text text-lighten-2" href="#">{{ 止间书店.store_name }}</h1>
+            <div class="row center">
+                <h5 class="header col s12 light">{{ 止间书店.address }}</h5>
+            </div>
+            <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">进入书店</a>
+        </div>
+      </div>
+    </div>
+    <div class="parallax"><img src="/static/pic/zhijianshudian.jpg" alt="Unsplashed background img 3"></div>
+  </div>
+  <div class="container">
+    <div class="section">
+      <div class="row">
+        <div class="col s12 center">
+          <h3><i class="mdi-content-send brown-text"></i></h3>
+          <h4>止间书店</h4>
+          <p class="left-align light" style="font-size: 18px">{{ 止间书店.introduction }}</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer class="page-footer teal">
+    <div class="container">
+      <div class="row">
+        <div class="col l12 s12">
+            <h5 class="white-text">制作团队</h5>
+            <p class="grey-text text-lighten-4">本项目由张毕成 周松松 崔鹏 刘逵完成，后台使用Django2.0搭建，前端基于Material Design框架materialize</p>
+        </div>
+
+      </div>
+    </div>
+      <div class="footer-copyright">
+      <div class="container">
+      &nbsp;&nbsp;&nbsp;代码仓库地址 <a class="text text-lighten-3" href="https://github.com/ZBcheng/bookstore_management_system" style="color: white">&nbsp&nbsp&nbsphttps://github.com/ZBcheng/bookstore_management_system</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="/static/js/materialize.js"></script>
+  <script src="/static/js/init.js"></script>
+
+  </body>
+</html>

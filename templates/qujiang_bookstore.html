@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>曲江书城</title>
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="/static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="/static/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+    {% csrf_token %}
+    <div class="row" style="width: 700px;margin-left: auto; padding-top: 60px">
+        <div>
+            <div class="card">
+                <div class="card-image">
+                    <img src="/static/pic/background3.jpg">
+                    <span class="card-title">曲江书城</span>
+                </div>
+            <div class="card-content">
+                <ul class="collapsible">
+    <li>
+      <div class="collapsible-header"><i class="material-icons">filter_drama</i>{% for book in 曲江书城.book_stack %}</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.collapsible');
+            var instances = M.Collapsible.init(elems);
+        });
+    </script>
+  </ul>
+            </div>
+
+      </div>
+    </div>
+    </div>
+
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="/static/js/materialize.js"></script>
+  <script src="/static/js/init.js"></script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="/static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="/static/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+    <body background="/static/pic/login.jpg">
+
+    <div class="login-card" style="width: 600px; height: 400px; margin: auto; margin-top: 200px;">
+        <div class="card">
+
+
+        <h2 style="padding-left: 55px; padding-top: 55px">登录</h2>
+        <div class="row">
+            <form class="col s12" id="log_form" action="" method="post">
+              <div class="row" style="margin-left: 50px;">
+                <div class="row" style="margin-top: 10px">
+                    <div class="input-field col s10">
+                        <i class="material-icons prefix">account_circle</i>
+                        <input id="username" type="text" class="validate" name="username">
+                        <label for="username">用户名</label>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top: 10px">
+                    <div class="input-field col s10" name="password">
+                        <i class="material-icons prefix">lock</i>
+                        <input id="password" type="tel" class="validate" name="password">
+                        <label for="password">密码</label>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 30px;">
+
+                    <a class="waves-effect waves-light btn modal-trigger col s4" href="#modal1" onclick="login()" style="margin-left: 50px">登录</a>
+
+                  <!-- Modal Structure -->
+                  <div id="modal1" class="modal" style="margin-top: 130px">
+                    <div class="modal-content">
+                      <h4>信息错误</h4>
+                      <p>请输入用户名</p>
+                    </div>
+                    <div class="modal-footer" style="padding-right: 25px">
+                      <a href="#!" class="modal-close waves-effect waves-light btn">确定</a>
+                    </div>
+                  </div>
+
+{#                    <a class="waves-effect waves-light btn col s4" onclick="login()" style="margin-left: 50px">登录</a>#}
+                    <a class="waves-effect waves-light btn col s4" style="margin-left: 30px" href="/ ">返回</a>
+                </div>
+                <script src="/static/js/login.js"></script>
+              </div>
+            {% csrf_token %}
+            </form>
+        </div>
+
+        </div>
+         <!-- Modal Trigger -->
+{#          <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>#}
+{##}
+{#          <!-- Modal Structure -->#}
+{#          <div id="modal1" class="modal">#}
+{#            <div class="modal-content">#}
+{#              <h4>Modal Header</h4>#}
+{#              <p>A bunch of text</p>#}
+{#            </div>#}
+{#            <div class="modal-footer">#}
+{#              <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>#}
+{#            </div>#}
+{#          </div>#}
+    </div>
+    </div>
+
+    <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="/static/js/materialize.js"></script>
+  <script src="/static/js/init.js"></script>
+
+</body>
+</html>

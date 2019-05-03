@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="/static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="/static/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+    <body background="/static/pic/login.jpg">
+
+    <div class="login-card" style="width: 600px; margin: auto;  ">
+        <div class="card">
+
+
+        <h2 style="padding-left: 55px; padding-top: 55px" onclick="register()">注册</h2>
+        <div class="row">
+            <form class="col s12" id="log_form" action="" method="post">
+              <div class="row" style="margin-left: 50px;">
+
+                <div class="row" style="margin-top: 10px">
+                    <div class="input-field col s10" name="name">
+                        <i class="material-icons prefix">face</i>
+                        <input id="name" type="text" class="validate" name="name">
+                        <label for="name">姓名</label>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top: 10px">
+                    <div class="input-field col s10" name="username">
+                        <i class="material-icons prefix">account_circle</i>
+                        <input id="username" type="text" class="validate" name="username">
+                        <label for="username">用户名</label>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top: 10px">
+                    <div class="input-field col s10" name="password">
+                        <i class="material-icons prefix">lock</i>
+                        <input id="password" type="password" class="validate" name="password">
+                        <label for="password">密码</label>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top: 10px">
+                    <div class="input-field col s10" name="email">
+                        <i class="material-icons prefix">email</i>
+                        <input id="email" type="email" class="validate" name="email">
+                        <label for="email">邮箱</label>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top: 10px">
+                    <div class="input-field col s10" name="birthday">
+                        <i class="material-icons prefix">cake</i>
+                        <input id="birthday" type="tel" class="datepicker" name="birthday">
+                        <label for="birthday">生日</label>
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                var elem = document.querySelectorAll('.datepicker');
+                                var instances = M.Datepicker.init(elem)
+                            });
+                        </script>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top: 10px">
+                    <div class="input-field col s10" name="mobile">
+                        <i class="material-icons prefix">phone</i>
+                        <input id="mobile" type="text" class="validate" name="mobile">
+                        <label for="mobile">手机</label>
+                    </div>
+                </div>
+
+
+                <div class="row" style="margin-top: 30px;">
+
+                    <a class="waves-effect waves-light btn modal-trigger col s4" href="#modal1" onclick="register()" style="margin-left: 50px">注册</a>
+
+                  <!-- Modal Structure -->
+                  <div id="modal1" class="modal" style="margin-top: 130px">
+                    <div class="modal-content">
+                      <h4>信息错误</h4>
+                      <p>{{ msg }}</p>
+                    </div>
+                    <div class="modal-footer" style="padding-right: 25px">
+                      <a href="#!" class="modal-close waves-effect waves-light btn">确定</a>
+                    </div>
+                  </div>
+
+{#                    <a class="waves-effect waves-light btn col s4" onclick="login()" style="margin-left: 50px">登录</a>#}
+                    <a class="waves-effect waves-light btn col s4" style="margin-left: 30px" href="/">返回</a>
+                </div>
+                <script src="/static/js/register.js"></script>
+              </div>
+            {% csrf_token %}
+            </div>
+            </form>
+        </div>
+
+        </div>
+
+    </div>
+    </div>
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="/static/js/materialize.js"></script>
+  <script src="/static/js/init.js"></script>
+
+</body>
+</html>
