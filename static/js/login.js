@@ -5,7 +5,7 @@ function login() {
     var password = document.getElementById("password").value
     console.log(username)
     console.log(password)
-    if(nick_name == "") {
+    if(username == "") {
         var elem = document.getElementById('modal1')
         var instances = M.Modal.init(elem)
     } else {

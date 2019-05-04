@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 
 from bookstore.views import getBookStore
-from user.views import LoginView, RegisterView, userLogout
+from user.views import LoginView, RegisterView, userLogout, qujiangBookStore, buyBooksView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,6 +25,6 @@ urlpatterns = [
 	path('login/', LoginView.as_view(), name="login"),
 	path('logout/', userLogout, name="logout"),
 	path('register/', RegisterView.as_view(), name="register"),
-	# path('qujiang_bookstore/', qujiangBookStore),
+	path('qujiang_bookstore/', buyBooksView.as_view()),
 
 ]

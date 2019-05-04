@@ -29,22 +29,22 @@
 
         {% csrf_token %}
         <ul id="slide-out" class="sidenav">
-            <li><div class="user-view">
+            <li><div class="user-view" style="height: 190px">
                 <div class="background">
                 <img src="/static/pic/background1.jpg">
                 </div>
                     <a href="#user"><img class="circle" src="/static/pic/user.JPG"></a>
                     <a href="#name"><span class="white-text name" style="padding-top: 7px;padding-bottom: 20px">{{ request.user.username }}</span></a>
-                </div></li>
+                </div>
+            </li>
             <li><a class="subheader" href="#!"></i>基本信息</a></li>
             <li><div class="divider"></div></li>
-            <li><a class="waves-effect" href="#!"><i class="material-icons">face</i>{{ request.user.username }}</a></li>
+            <li><a class="waves-effect" href="#!"><i class="material-icons">face</i>{{ request.user.name }}</a></li>
             <li><a class="waves-effect" href="#!"><i class="material-icons">phone</i>{{ request.user.mobile }}</a></li>
             <li><a class="waves-effect" href="#!"><i class="material-icons">cake</i>{{ request.user.birthday }}</a></li>
             <li><a class="waves-effect" href="#!"><i class="material-icons">email</i>{{ request.user.email }}</a></li>
             <li><div class="divider"></div></li>
-            <li><a class="subheader">Subheader</a></li>
-            <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+            <li><a class="waves-effect" href="/logout/" style="color: #E53935"><i class="material-icons">info</i>退出登录</a></li>
 
             <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         </ul>

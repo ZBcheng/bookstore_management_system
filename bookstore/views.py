@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.views.generic.base import View
 
 from .models import BookStore
+from .models import BookStoreStack
+from book.models import Book, BookStack
 # from supplier.models import Supplier
 # from customer.models import CurrentUser
 
@@ -32,6 +34,10 @@ def getBookStore(request):
 
 def enterBookStore(request, store_name):
 	store = BookStore.objects.get(store_name=store_name)  # 西安 张毕成
+	bookstore_stack = BookStoreStack.objects.get(bookstore=store)
+	store_stack_name = store_name + '书库'
+	books = Book.objects.filter(book_stack__stack_name=store_stack_name)
+
 
 	if store_name == "曲江书城":
 		page = "qujiang_bookstore",
@@ -42,4 +48,6 @@ def enterBookStore(request, store_name):
 	elif store_name == "止间书店":
 		page = "zhijianshudian_bookstore"
 
-	return render(request, "%s.html" % page, {'{}'.format(store_name): store})
+
+
+	return render(request, "%s.html" % page, {'store': store, 'bookstore_stack': bookstore_stack, 'books': books})

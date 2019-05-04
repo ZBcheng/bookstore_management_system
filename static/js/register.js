@@ -10,6 +10,7 @@ function register() {
     console.log(username)
     console.log(password)
     console.log(email)
+    console.log(mobile)
     if(username == "") {
         var elem = document.getElementById('modal1')
         var instances = M.Modal.init(elem)
