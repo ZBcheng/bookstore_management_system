@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+
+    <title>{{ store.store_name }} 书店管理</title>
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="/static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="/static/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+    <body background="/static/pic/backups/qujiangshucheng_bg.jpg">
+    <nav class="white" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" class="brand-logo" href="/ ">{{ store.store_name }} 书店管理</a>
+      <ul class="right hide-on-med-and-down">
+
+{#            <a class="waves-effect waves-light btn modal-trigger col s4" href="#modal1" onclick="login()" style="margin-left: 50px">登录</a>#}
+{#            <a href="#" data-target="slide-out" class="sidenav-trigger btn" onclick="show_sidebar()">个人信息</a>#}
+{#            <a class="sidenav-trigger btn" onclick="show_sidebar()" href="#slide-out">个人信息</a>#}
+
+        <li><a href="/ ">返回</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+
+
+  <div class="row" style="padding-top: 40px; margin-right: auto; margin-left: 100px;">
+    <div class="col s12 m11">
+
+        <div class="card-content white-text">
+            <span class="card-title" style="font-size: 50px; padding-top: 30px">{{ store.store_name }}</span>
+        </div>
+
+      <ul class="collapsible">
+
+
+            <li class="active">
+              <div class="collapsible-header"><i class="material-icons">book</i>库存图书</div>
+              <div class="collapsible-body col s12" style="background: white;">
+              <form class="c" id="log_form" action="" method="post" style="background: white">
+                  <input id="book_name" type="hidden" class="validate" name="book_name">
+
+
+{#                  <input id="store_name" class="validate" name="store_name">#}
+              <div class="input-field col s12">
+{#                <input id="store_name" type="text" class="validate" name="store_name">#}
+{#                <label for="store_name">书店名</label>#}
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">account_circle</i>
+                    <select id="store_name" type="text" name="store_name">
+                      <option value="曲江书城" disabled selected>曲江书城</option>
+                      <option value="言几又 迈科中心">言几又 迈科中心</option>
+                      <option value="中信书店">中信书店</option>
+                      <option value="止间书店">止间书店</option>
+                    </select>
+                  </div>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        var elems = document.querySelectorAll('select');
+                        var instances = M.FormSelect.init(elems);
+                    });
+                </script>
+            </div>
+
+                  <table class="m11 striped highlight centered background: white;">
+                    <thead>
+                      <tr>
+                          <th>书名</th>
+                          <th>作者</th>
+                          <th>出版社</th>
+                          <th>价格</th>
+                          <th>库存</th>
+                          <th>购买</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for book in books %}
+                      <tr>
+                        <td>{{ book.book_name }}</td>
+                        <td>{{ book.writer }}</td>
+                        <td>{{ book.publisher }}</td>
+                        <td>{{ book.price }}</td>
+                        <td>{{ book.number }}</td>
+                          <td><button class="btn" onclick="buyBooks(this)">购买</button></td>
+                          <script src="/static/js/supplier_buy_books.js"></script>
+
+                      </tr>
+                    {% endfor %}
+                    </tbody>
+                  </table>
+              </form>
+              </div>
+            </li>
+
+      </ul>
+      <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.collapsible');
+            var instances = M.Collapsible.init(elems);
+
+          });
+      </script>
+
+
+    <!--  Scripts-->
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=134db1b9cf1f1f2b4427210932b34dcb"></script>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="/static/js/materialize.js"></script>
+  <script src="/static/js/init.js"></script>
+
+</body>
+</html>

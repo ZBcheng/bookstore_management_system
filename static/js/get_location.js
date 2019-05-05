@@ -1,6 +1,14 @@
-var x=108.982928,y=34.215148;
-
-window.onload = function() {
+function getLoc(store){
+    var x, y
+    if(store == "曲江书城") {
+        x=108.982928,y=34.215148;
+    }else if(store == "言几又") {
+        x = 108.887213, y = 34.198026
+    }else if(store == "中信书店") {
+        x = 121.634155, y = 38.92413
+    }else if(store == "止间书店") {
+        x = 112.991576, y = 28.205118
+    }
     if(navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
             // 百度地图API功能

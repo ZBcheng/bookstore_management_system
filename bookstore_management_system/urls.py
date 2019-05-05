@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 
 from bookstore.views import getBookStore
-from user.views import LoginView, RegisterView, userLogout, qujiangBookStore, buyBooksView
+from user.views import LoginView, RegisterView, userLogout, qujiangBookStore, qujiangBooksView, yanjiyouBooksView, zhongxinBooksView, zhijianBooksView, AdminLoginView, SupplierView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,6 +25,11 @@ urlpatterns = [
 	path('login/', LoginView.as_view(), name="login"),
 	path('logout/', userLogout, name="logout"),
 	path('register/', RegisterView.as_view(), name="register"),
-	path('qujiang_bookstore/', buyBooksView.as_view()),
+	path('qujiangbookstore/', qujiangBooksView.as_view()),
+	path('yanjiyoubookstore/', yanjiyouBooksView.as_view()),
+	path('zhongxinbookstore/', zhongxinBooksView.as_view()),
+	path('zhijianbookstore/', zhijianBooksView.as_view()),
+	path('adminlogin/', AdminLoginView.as_view()),
+	path('supplier/', SupplierView.as_view()),
 
 ]

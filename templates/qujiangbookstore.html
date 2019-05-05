@@ -69,12 +69,12 @@
 
         <div class="card-content">
             <ul class="collapsible">
-                <li>
+                <li class="active">
                   <div class="collapsible-header"><i class="material-icons">info</i>书店简介</div>
                   <div class="collapsible-body" style="background: white; font-size: 18px; line-height: 1cm">{{ store.introduction }}</div>
                 </li>
                 <li>
-                  <div class="collapsible-header"><i class="material-icons">place</i>书店地址</div>
+                  <div class="collapsible-header" onclick="getLoc('曲江书城')"><i class="material-icons">place</i>书店地址</div>
                   <div class="collapsible-body" style="background: white;">
                       <div>
                           <div id="status" style="text-align: center"></div>
@@ -124,6 +124,7 @@
               document.addEventListener('DOMContentLoaded', function() {
                 var elems = document.querySelectorAll('.collapsible');
                 var instances = M.Collapsible.init(elems);
+
               });
           </script>
         </div>

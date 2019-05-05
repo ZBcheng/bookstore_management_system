@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+
+    <title id="loc">{{ store.store_name }}</title>
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="/static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="/static/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+    <body background="/static/pic/zhongxinshudian.jpg">
+    <nav class="white" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" class="brand-logo" href="/ ">{{ store.store_name }}</a>
+      <ul class="right hide-on-med-and-down">
+
+        {% if request.user.is_authenticated %}
+            <script src="/static/js/showsidenav.js"></script>
+{#            <a class="waves-effect waves-light btn modal-trigger col s4" href="#modal1" onclick="login()" style="margin-left: 50px">登录</a>#}
+            <li><a onclick="show_sidebar()" href="#slide-out">个人信息</a></li>
+{#            <a href="#" data-target="slide-out" class="sidenav-trigger btn" onclick="show_sidebar()">个人信息</a>#}
+{#            <a class="sidenav-trigger btn" onclick="show_sidebar()" href="#slide-out">个人信息</a>#}
+
+        <li><a href="/logout/">退出登录</a></li>
+        </ul>
+
+        {% csrf_token %}
+        <ul id="slide-out" class="sidenav">
+            <li><div class="user-view" style="height: 190px">
+                <div class="background">
+                <img src="/static/pic/background1.jpg">
+                </div>
+                    <a href="#user"><img class="circle" src="/static/pic/user.JPG"></a>
+                    <a href="#name"><span class="white-text name" style="padding-top: 7px;padding-bottom: 20px">{{ request.user.username }}</span></a>
+                </div></li>
+            <li><a class="subheader" href="#!"></i>基本信息</a></li>
+            <li><div class="divider"></div></li>
+            <li><a class="waves-effect" href="#!"><i class="material-icons">face</i>{{ request.user.name }}</a></li>
+            <li><a class="waves-effect" href="#!"><i class="material-icons">phone</i>{{ request.user.mobile }}</a></li>
+            <li><a class="waves-effect" href="#!"><i class="material-icons">cake</i>{{ request.user.birthday }}</a></li>
+            <li><a class="waves-effect" href="#!"><i class="material-icons">email</i>{{ request.user.email }}</a></li>
+            <li><div class="divider"></div></li>
+            <li><a class="waves-effect" href="/logout/" style="color: #E53935"><i class="material-icons">info</i>退出登录</a></li>
+
+            <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        </ul>
+
+            {% else %}
+            <li><a href="/login/">登录</a></li>
+            <li><a href="/register/">注册</a></li>
+            <li><a href="#">书店管理</a></li>
+        {% endif %}
+
+      </ul>
+    </div>
+  </nav>
+
+
+
+
+  <div class="row" style="padding-top: 40px">
+    <div class="col s12 m11">
+      <div class="card blue-grey darken-1" style="margin-right: auto; margin-left: 100px;">
+        <div class="card-content white-text">
+            <span class="card-title" style="font-size: 50px; padding-top: 30px">{{ store.store_name }}</span>
+        </div>
+
+        <div class="card-content">
+            <ul class="collapsible">
+                <li class="active">
+                  <div class="collapsible-header"><i class="material-icons">info</i>书店简介</div>
+                  <div class="collapsible-body" style="background: white; font-size: 18px; line-height: 1cm">{{ store.introduction }}</div>
+                </li>
+                <li>
+                  <div class="collapsible-header" onclick="getLoc('中信书店')"><i class="material-icons">place</i>书店地址</div>
+                  <div class="collapsible-body" style="background: white;">
+                      <div>
+                          <div id="status" style="text-align: center"></div>
+                          <div style="width:900px;height:350px;border:1px solid gray;margin:10px auto" id="container"></div>
+                      </div>
+                      <script src="/static/js/get_location.js"></script>
+                  </div>
+                </li>
+                <li>
+                  <div class="collapsible-header"><i class="material-icons">book</i>库存图书</div>
+                  <div class="collapsible-body col s12" style="background: white;">
+                  <form class="c" id="log_form" action="" method="post" style="background: white">
+                      <input id="book_name" type="hidden" class="validate" name="book_name">
+                      <table class="m11 striped highlight centered background: white;">
+                        <thead>
+                          <tr>
+                              <th>书名</th>
+                              <th>作者</th>
+                              <th>出版社</th>
+                              <th>价格</th>
+                              <th>库存</th>
+                              <th>购买</th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                        {% for book in books %}
+                          <tr>
+                            <td>{{ book.book_name }}</td>
+                            <td>{{ book.writer }}</td>
+                            <td>{{ book.publisher }}</td>
+                            <td>{{ book.price }}</td>
+                            <td>{{ book.number }}</td>
+                              <td><button class="btn" onclick="buyBooks(this)">购买</button></td>
+                              <script src="/static/js/buy_books.js"></script>
+
+                          </tr>
+                        {% endfor %}
+                        </tbody>
+                      </table>
+                  </form>
+                  </div>
+                </li>
+
+          </ul>
+          <script>
+              document.addEventListener('DOMContentLoaded', function() {
+                var elems = document.querySelectorAll('.collapsible');
+                var instances = M.Collapsible.init(elems);
+              });
+          </script>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!--  Scripts-->
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=134db1b9cf1f1f2b4427210932b34dcb"></script>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="/static/js/materialize.js"></script>
+  <script src="/static/js/init.js"></script>
+
+</body>
+</html>

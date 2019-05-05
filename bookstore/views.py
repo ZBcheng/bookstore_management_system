@@ -33,20 +33,23 @@ def getBookStore(request):
 
 
 def enterBookStore(request, store_name):
-	store = BookStore.objects.get(store_name=store_name)  # 西安 张毕成
+	store = BookStore.objects.get(store_name=store_name)
 	bookstore_stack = BookStoreStack.objects.get(bookstore=store)
-	store_stack_name = store_name + '书库'
+	if store_name == '言几又 迈科中心':
+		store_stack_name = '言几又书库'
+	else:
+		store_stack_name = store_name + '书库'
 	books = Book.objects.filter(book_stack__stack_name=store_stack_name)
 
 
 	if store_name == "曲江书城":
-		page = "qujiang_bookstore",
-	elif store_name == "言几又":
-		page = "yanijyou_bookstore"
+		page = "qujiangbookstore",
+	elif store_name == "言几又 迈科中心":
+		page = "yanjiyoubookstore"
 	elif store_name == "中信书店":
-		page = "zhongxinshudian_bookstore"
+		page = "zhongxinbookstore"
 	elif store_name == "止间书店":
-		page = "zhijianshudian_bookstore"
+		page = "zhijianbookstore"
 
 
 
